@@ -20,22 +20,24 @@ The system provides:
 
 ## Architecture
 
+## Architecture Diagram
+
+```
 Client
-│
-▼
+  │
+  ▼
 API Gateway (Port 5000)
-│
-├── Auth Service (Port 5001)
-│ └── User Authentication & JWT
-│
-├── Product Service (Port 5002)
-│ └── Product Management
-│
-└── MongoDB (Port 27017)
-
-
-
-
+  │
+  ├──────────────► Auth Service (Port 5001)
+  │                   │
+  │                   ▼
+  │               MongoDB (Users)
+  │
+  └──────────────► Product Service (Port 5002)
+                      │
+                      ▼
+                  MongoDB (Products)
+```
 
 ---
 
