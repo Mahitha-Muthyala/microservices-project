@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/authdb
+      - JWT_SECRET=mysecretkey
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/productdb
+      - JWT_SECRET=mysecretkey
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth-service
+      - product-service
+    environment:
+      - AUTH_SERVICE=http://auth-service:5001
+      - PRODUCT_SERVICE=http://product-service:5002
+      - JWT_SECRET=mysecretkey
