@@ -148,7 +148,6 @@ This will start:
 
 ## Service URLs
 
-Service	               URL
 
 API Gateway  	 http://localhost:5000
 
@@ -157,6 +156,7 @@ Auth Service	 http://localhost:5001
 Product Service	 http://localhost:5002
 
 Swagger Docs	 http://localhost:5000/docs
+
 ---
 
 ### API Endpoints
@@ -336,4 +336,5 @@ docker-compose up --build
 
 Mahitha Muthyala
 B.Tech Electronics and Communication Engineering
+
 ---
